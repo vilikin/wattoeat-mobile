@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <fragment
-        android:name="in.vilik.wattoeat.foodlist.RecipeListFragment"
+        android:name="in.vilik.wattoeat.recipelist.RecipeListFragment"
         android:id="@+id/foodListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
