@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import com.airbnb.epoxy.EpoxyRecyclerView
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.view_holder_recipe_list_item.view.*
 
 class RecipeListFragment : Fragment() {
     private val viewModel: RecipeListViewModel by viewModels()
@@ -25,6 +27,14 @@ class RecipeListFragment : Fragment() {
         epoxyRecyclerView.withModels {
             viewModel.recipes.value?.forEach {
                 recipeListItem {
+                    this.onBind { _, bindingHolder, _ ->
+                        val root = bindingHolder.dataBinding.root
+                        val imageView = root.foodImage
+                        if (it.imageUrl != null) {
+                            Picasso.with(root.context).load(it.imageUrl).into(imageView)
+                        }
+                    }
+
                     id(it.contentfulId)
                     food(it)
                 }
