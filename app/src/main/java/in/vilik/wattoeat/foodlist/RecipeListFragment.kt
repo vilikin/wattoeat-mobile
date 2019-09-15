@@ -36,7 +36,7 @@ class RecipeListFragment : Fragment() {
                     }
 
                     id(it.contentfulId)
-                    food(it)
+                    recipe(it)
                 }
             }
         }

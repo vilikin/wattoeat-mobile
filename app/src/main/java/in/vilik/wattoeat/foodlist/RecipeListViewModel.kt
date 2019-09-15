@@ -1,6 +1,6 @@
 package `in`.vilik.wattoeat.foodlist
 
-import `in`.vilik.wattoeat.Food
+import `in`.vilik.wattoeat.Recipe
 import `in`.vilik.wattoeat.repository.RecipeRepository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,9 +12,9 @@ class RecipeListViewModel : ViewModel() {
 
     private val recipeRepository = RecipeRepository()
 
-    private val _recipes : MutableLiveData<List<Food>> = MutableLiveData(emptyList())
+    private val _recipes : MutableLiveData<List<Recipe>> = MutableLiveData(emptyList())
 
-    val recipes: LiveData<List<Food>> = _recipes
+    val recipes: LiveData<List<Recipe>> = _recipes
 
     init {
         viewModelScope.launch {
