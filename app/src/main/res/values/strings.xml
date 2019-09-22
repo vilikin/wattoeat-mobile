@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Wattoeat</string>
+    <string name="fragment_recipe_list">Recipes</string>
 </resources>

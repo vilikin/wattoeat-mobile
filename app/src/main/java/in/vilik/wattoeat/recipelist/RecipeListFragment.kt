@@ -9,8 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.findNavController
 import com.airbnb.epoxy.EpoxyRecyclerView
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.view_holder_recipe_list_item.view.*
 
 class RecipeListFragment : Fragment() {
@@ -20,25 +21,30 @@ class RecipeListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.recipe_list_fragment, container)
+        val view = inflater.inflate(R.layout.recipe_list_fragment, container, false)
 
         val epoxyRecyclerView = view.findViewById<EpoxyRecyclerView>(R.id.food_list_recycler_view)
 
         epoxyRecyclerView.withModels {
-            viewModel.recipes.value?.forEach {
+            viewModel.recipes.value?.forEach { recipe ->
                 recipeListItem {
                     this.onBind { _, bindingHolder, _ ->
                         val root = bindingHolder.dataBinding.root
-                        val imageView = root.foodImage
-                        if (it.imageUrl != null) {
-                            Picasso.with(root.context).load(it.imageUrl).into(imageView)
-                        } else {
-                            imageView.setImageResource(R.drawable.placeholder)
+                        val imageView = root.recipeImage
+
+                        recipe.imageUrl?.let {
+                            Glide.with(root).load(recipe.imageUrl).into(imageView)
+                        }
+
+                        root.recipeCard.setOnClickListener {
+                            val action = RecipeListFragmentDirections.viewRecipeAction(recipe, recipe.name)
+
+                            it.findNavController().navigate(action)
                         }
                     }
 
-                    id(it.contentfulId)
-                    recipe(it)
+                    id(recipe.contentfulId)
+                    this.recipe(recipe)
                 }
             }
         }
@@ -47,6 +53,6 @@ class RecipeListFragment : Fragment() {
             epoxyRecyclerView.requestModelBuild()
         }
 
-        return view;
+        return view
     }
 }
