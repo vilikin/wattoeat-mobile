@@ -32,12 +32,12 @@ class RecipeListFragment : Fragment() {
                         val root = bindingHolder.dataBinding.root
                         val imageView = root.recipeImage
 
-                        recipe.imageUrl?.let {
-                            Glide.with(root).load(recipe.imageUrl).into(imageView)
-                        }
+                        Glide.with(root).load(recipe.imageUrl).placeholder(R.drawable.placeholder)
+                            .into(imageView)
 
                         root.recipeCard.setOnClickListener {
-                            val action = RecipeListFragmentDirections.viewRecipeAction(recipe, recipe.name)
+                            val action =
+                                RecipeListFragmentDirections.viewRecipeAction(recipe, recipe.name)
 
                             it.findNavController().navigate(action)
                         }

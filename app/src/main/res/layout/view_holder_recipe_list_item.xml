@@ -27,7 +27,6 @@
                     android:scaleType="centerCrop"
                     android:layout_height="match_parent"
                     android:contentDescription="@{recipe.name}"
-                    android:src="@drawable/placeholder"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
