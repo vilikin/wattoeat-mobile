@@ -1,16 +1,17 @@
 package `in`.vilik.wattoeat.recipelist
 
 import `in`.vilik.wattoeat.R
+import `in`.vilik.wattoeat.databinding.RecipeListFragmentBinding
 import `in`.vilik.wattoeat.recipeListItem
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
-import com.airbnb.epoxy.EpoxyRecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.view_holder_recipe_list_item.view.*
 
@@ -21,9 +22,9 @@ class RecipeListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.recipe_list_fragment, container, false)
+        val binding = DataBindingUtil.inflate<RecipeListFragmentBinding>(inflater, R.layout.recipe_list_fragment, container, false)
 
-        val epoxyRecyclerView = view.findViewById<EpoxyRecyclerView>(R.id.food_list_recycler_view)
+        val epoxyRecyclerView = binding.recipeListRecyclerView
 
         epoxyRecyclerView.withModels {
             viewModel.recipes.value?.forEach { recipe ->
@@ -53,6 +54,10 @@ class RecipeListFragment : Fragment() {
             epoxyRecyclerView.requestModelBuild()
         }
 
-        return view
+        binding.createRecipeButton.setOnClickListener {
+            it.findNavController().navigate(R.id.createRecipeAction)
+        }
+
+        return binding.root
     }
 }

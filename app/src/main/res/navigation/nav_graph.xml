@@ -10,7 +10,18 @@
         android:label="@string/fragment_recipe_list" >
         <action
             android:id="@+id/viewRecipeAction"
-            app:destination="@id/recipeFragment" />
+            app:destination="@id/recipeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/createRecipeAction"
+            app:destination="@id/createRecipeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/recipeFragment"
@@ -23,4 +34,8 @@
             android:name="title"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/createRecipeFragment"
+        android:name="in.vilik.wattoeat.createrecipe.CreateRecipeFragment"
+        android:label="@string/fragment_create_recipe" />
 </navigation>

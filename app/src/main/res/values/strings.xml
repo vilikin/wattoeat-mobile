@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Wattoeat</string>
     <string name="fragment_recipe_list">Reseptit</string>
+    <string name="fragment_create_recipe">Uusi resepti</string>
     <string name="fragment_recipe_ingredients">Ainekset</string>
     <string name="fragment_recipe_instructions">Ohje</string>
 </resources>
